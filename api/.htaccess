@@ -1,0 +1,11 @@
+# Protect sensitive mailer files from direct browser access
+<FilesMatch "^(mailer-config\.php|mailer\.log|\.env)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
