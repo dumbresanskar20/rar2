@@ -18,6 +18,54 @@
 
 <body class="bg-white text-mainText font-sans antialiased selection:bg-secondary selection:text-white">
 
+  <!-- FLOATING TOAST POPUP NOTIFICATION (Auto-dismisses in 5s) -->
+  <div id="toast-popup"
+    class="fixed top-6 right-4 sm:right-6 z-[99999] max-w-md w-[calc(100%-2rem)] sm:w-[420px] pointer-events-auto hidden"
+    role="status" aria-live="polite">
+    <div id="toast-card"
+      class="bg-white/95 backdrop-blur-md rounded-2xl p-4 sm:p-5 shadow-2xl border border-emerald-200/90 ring-1 ring-emerald-500/10 flex items-start gap-3.5 relative overflow-hidden transition-all duration-300">
+
+      <!-- Top colored accent line -->
+      <div id="toast-accent-bar"
+        class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500"></div>
+
+      <!-- Icon Badge with fixed explicit dimensions -->
+      <div id="toast-icon-box" style="width: 38px; height: 38px; min-width: 38px; min-height: 38px;"
+        class="rounded-xl bg-emerald-100/90 border border-emerald-200 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5">
+        <svg id="toast-icon-svg" style="width: 20px; height: 20px; min-width: 20px; min-height: 20px;" fill="none"
+          stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+
+      <!-- Text content -->
+      <div class="flex-1 min-w-0 pr-2">
+        <h4 id="toast-title" class="font-heading font-bold text-sm sm:text-base text-slate-900 leading-snug">
+          Thank you for reaching out!
+        </h4>
+        <p id="toast-message" class="mt-1 text-xs sm:text-sm text-slate-600 leading-relaxed break-words">
+          Your enquiry has been received. Our team in Pune will get back to you within 24 hours. A confirmation email
+          has been sent to your email.
+        </p>
+      </div>
+
+      <!-- Close button -->
+      <button type="button" id="toast-close"
+        class="text-slate-400 hover:text-slate-700 transition-colors p-1.5 rounded-lg hover:bg-slate-100 shrink-0 -mt-1 -mr-1 cursor-pointer"
+        aria-label="Close notification">
+        <svg style="width: 16px; height: 16px; min-width: 16px; min-height: 16px;" fill="none" stroke="currentColor"
+          viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <!-- Auto-dismiss progress bar -->
+      <div class="absolute bottom-0 left-0 right-0 h-1 bg-slate-100 overflow-hidden">
+        <div id="toast-progress" class="h-full bg-emerald-500 w-full transition-all ease-linear"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- HEADER / NAVIGATION -->
   <header
     class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-[#070D1E] py-4 sm:py-5 border-b border-white/5">
@@ -368,33 +416,12 @@
                 </p>
               </div>
 
-              <!-- Success Banner -->
-              <div id="success-banner"
-                class="hidden mb-6 p-5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900">
-                <div class="flex items-start gap-3">
-                  <svg class="w-6 h-6 text-emerald-600 shrink-0 mt-0.5" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <div>
-                    <h3 id="success-banner-title" class="font-heading font-bold text-base text-emerald-950">
-                      Thank you! We will contact you within 24 hours.
-                    </h3>
-                    <p id="success-banner-text" class="mt-1 text-sm text-emerald-800 leading-relaxed">
-                      Your enquiry has been sent. We appreciate you getting in touch. An autoreply confirmation has been
-                      sent to your email.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Error Banner -->
+              <!-- Inline Error Banner (Fallback) -->
               <div id="error-banner"
-                class="hidden mb-6 p-5 rounded-2xl bg-rose-50 border border-rose-200 text-rose-900">
+                class="hidden mb-6 p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-900">
                 <div class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-rose-600 shrink-0 mt-0.5" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24">
+                  <svg class="w-5 h-5 text-rose-600 shrink-0 mt-0.5" style="width: 20px; height: 20px; min-width: 20px;"
+                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <circle cx="12" cy="12" r="10" stroke-width="2"></circle>
                     <line x1="12" y1="8" x2="12" y2="12" stroke-width="2"></line>
                     <line x1="12" y1="16" x2="12.01" y2="16" stroke-width="2"></line>
@@ -491,7 +518,7 @@
                     placeholder="What would you like to build or improve?"
                     class="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-[#F8FAFC] hover:bg-white focus:bg-white focus:ring-blue-100 focus:border-blue-600 text-sm transition-all focus:outline-none focus:ring-2 resize-none"></textarea>
                   <p id="message-hint" class="mt-1.5 text-[11px] text-slate-500">
-                    Please share 5–500 characters so we can understand your needs.
+                    Please share 10–500 characters so we can understand your needs.
                   </p>
                   <p id="message-error" role="alert" class="hidden mt-1.5 text-xs text-rose-600 font-medium"></p>
                 </div>
@@ -512,10 +539,6 @@
                     </span>
                   </label>
                   <p id="consent-error" role="alert" class="hidden mt-1.5 text-xs text-rose-600 font-medium"></p>
-                  <p class="mt-2 text-[11px] text-slate-400 leading-normal pl-7">
-                    Your enquiry details are transmitted securely via our server PHP mailer directly to our Pune
-                    consulting desk. You will receive an immediate confirmation autoreply.
-                  </p>
                 </div>
 
                 <!-- Throttle Note -->
@@ -612,10 +635,14 @@
             Explore
           </h2>
           <ul class="space-y-1.5 text-sm">
-            <li><a href="index.html" class="text-slate-300 hover:text-cyan-400 transition-colors font-medium block py-0.5">Home</a></li>
-            <li><a href="about.html" class="text-slate-300 hover:text-cyan-400 transition-colors font-medium block py-0.5">About</a></li>
-            <li><a href="services.html" class="text-slate-300 hover:text-cyan-400 transition-colors font-medium block py-0.5">Services</a></li>
-            <li><a href="contact.html" class="text-slate-300 hover:text-cyan-400 transition-colors font-medium block py-0.5">Contact</a></li>
+            <li><a href="index.html"
+                class="text-slate-300 hover:text-cyan-400 transition-colors font-medium block py-0.5">Home</a></li>
+            <li><a href="about.html"
+                class="text-slate-300 hover:text-cyan-400 transition-colors font-medium block py-0.5">About</a></li>
+            <li><a href="services.html"
+                class="text-slate-300 hover:text-cyan-400 transition-colors font-medium block py-0.5">Services</a></li>
+            <li><a href="contact.html"
+                class="text-slate-300 hover:text-cyan-400 transition-colors font-medium block py-0.5">Contact</a></li>
           </ul>
         </div>
 
@@ -625,12 +652,24 @@
             Services
           </h2>
           <ul class="space-y-1.5 text-sm">
-            <li><a href="services.html#service-web" class="text-slate-300 hover:text-cyan-400 transition-colors font-medium block py-0.5">Website Development</a></li>
-            <li><a href="services.html#service-app" class="text-slate-300 hover:text-cyan-400 transition-colors font-medium block py-0.5">Custom Software Development</a></li>
-            <li><a href="services.html#service-seo" class="text-slate-300 hover:text-cyan-400 transition-colors font-medium block py-0.5">Search Engine Optimization (SEO)</a></li>
-            <li><a href="services.html#service-ecommerce" class="text-slate-300 hover:text-cyan-400 transition-colors font-medium block py-0.5">E-Commerce Platform / Portal</a></li>
-            <li><a href="services.html#service-local" class="text-slate-300 hover:text-cyan-400 transition-colors font-medium block py-0.5">Local Business Digital Setup</a></li>
-            <li><a href="services.html#service-security" class="text-slate-300 hover:text-cyan-400 transition-colors font-medium block py-0.5">Website Maintenance</a></li>
+            <li><a href="services.html#service-web"
+                class="text-slate-300 hover:text-cyan-400 transition-colors font-medium block py-0.5">Website
+                Development</a></li>
+            <li><a href="services.html#service-app"
+                class="text-slate-300 hover:text-cyan-400 transition-colors font-medium block py-0.5">Custom Software
+                Development</a></li>
+            <li><a href="services.html#service-seo"
+                class="text-slate-300 hover:text-cyan-400 transition-colors font-medium block py-0.5">Search Engine
+                Optimization (SEO)</a></li>
+            <li><a href="services.html#service-ecommerce"
+                class="text-slate-300 hover:text-cyan-400 transition-colors font-medium block py-0.5">E-Commerce
+                Platform / Portal</a></li>
+            <li><a href="services.html#service-local"
+                class="text-slate-300 hover:text-cyan-400 transition-colors font-medium block py-0.5">Local Business
+                Digital Setup</a></li>
+            <li><a href="services.html#service-security"
+                class="text-slate-300 hover:text-cyan-400 transition-colors font-medium block py-0.5">Website
+                Maintenance</a></li>
           </ul>
         </div>
 
@@ -640,8 +679,12 @@
             Legal & Privacy
           </h2>
           <ul class="space-y-1.5 text-sm">
-            <li><a href="privacy-policy.html" class="text-slate-300 hover:text-cyan-400 transition-colors font-medium block py-0.5">Privacy Policy</a></li>
-            <li><a href="terms-and-conditions.html" class="text-slate-300 hover:text-cyan-400 transition-colors font-medium block py-0.5">Terms and Conditions</a></li>
+            <li><a href="privacy-policy.html"
+                class="text-slate-300 hover:text-cyan-400 transition-colors font-medium block py-0.5">Privacy Policy</a>
+            </li>
+            <li><a href="terms-and-conditions.html"
+                class="text-slate-300 hover:text-cyan-400 transition-colors font-medium block py-0.5">Terms and
+                Conditions</a></li>
             <li>
               <button type="button"
                 class="open-cookie-settings text-slate-300 hover:text-cyan-400 transition-colors flex items-center gap-2 text-left font-medium py-0.5">
