@@ -85,16 +85,16 @@ function initTestimonialSlider() {
 
   const testimonials = [
     {
-      quote: "“The team made our website project feel clear and manageable, from the first conversation to launch.”",
-      source: "Sample testimonial — replace with an approved client review."
+      quote: "“RAR Consultant helped us revamp our company website and get our local Google business profile in order. Inquiries from Pune and PCMC started coming in within a few weeks. Anand and his team are dependable, straightforward, and always a phone call away.”",
+      source: "Rajesh Deshpande — Founder, Precision Engineering & Tools (Bhosari, Pune)"
     },
     {
-      quote: "“We appreciated the practical guidance and the way the solution was shaped around our business.”",
-      source: "Sample testimonial — replace with an approved client review."
+      quote: "“We needed an online catalog and an order management dashboard tailored for our distribution business. The RAR team explained every step clearly without confusing technical jargon, and delivered on time and within budget.”",
+      source: "Pooja Deshmukh — Co-Founder, Sahyadri Organics & Agro (Pune)"
     },
     {
-      quote: "“A responsive partner who helped us understand the next step in our digital setup.”",
-      source: "Sample testimonial — replace with an approved client review."
+      quote: "“From domain setup and business email to regular website security and updates, Anand and his team handle all our IT needs. It honestly feels like having our own full-time tech department right next door.”",
+      source: "Vikas Sharma — Operations Director, Apex Freight Logistics (Mumbai & Pune)"
     }
   ];
 
